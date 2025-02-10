@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>AdvocateVoice</title>
+    <link rel="shortcut icon" href="./assets/icnos/a.svg" type="/x-icon">
+    <link rel="stylesheet" href="./dashboard.css">
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/pizzip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html-docx-js@0.3.1/dist/html-docx.min.js"></script>
+    <!-- <script src="js/docxtemplater-latest.min.js"></script> -->
+    <script src="/js/FileSaver.min.js"></script>
+    <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+</head>
+
+<body>
+    
+    <main class="sidenav-bar">
+        <section class="AV-ICON">
+            <img src="./assets/icnos/a.svg">
+            <br>
+            <img src="./assets/icnos/v.svg" >
+        </section>
+        <br><br>
+        <section class="NAV-TOOLS">
+            <img title="profile"  id="prof" src="./assets/icnos/profile.svg" style="cursor: pointer;">
+            <br><br><br><br>
+            <img title="dashboard" id="dash" src="./assets/icnos/dashboard-blue.svg" style="cursor: pointer;">
+            <br><br><br><br>
+            <!-- <img title="how-to-use" id="htu" src="./assets/icnos/how-to-use.svg" style="cursor: pointer;"> -->
+        </section>
+    </main>
+
+    <main class="UpperPart">
+        <div class="formatting">
+            <div class="unre">
+                <button class="color-btn active"><img src="./assets/icnos/undo.svg" alt="X"></button>
+                <button class="color-btn"><img src="./assets/icnos/redo.svg" alt="X"></button>
+            </div>
+            <div class="format-opts">
+                <button class="color-btn2 active"><img src="./assets/icnos/Bold.svg" alt="B"></button>
+                <button class="color-btn2"><img src="./assets/icnos/Italic.svg" alt="I"></button>
+                <button class="color-btn2"><img src="./assets/icnos/Underline.svg" alt="U"></button>
+                <button class="color-btn2"><img src="./assets/icnos/cross.svg" alt="S"></button>
+                <button class="color-btn2"><img src="./assets/icnos/x2.svg" alt=""></button>
+                <button class="color-btn2"><img src="./assets/icnos/x2_.svg" alt=""></button>
+            </div>
+            <div class="alignment">
+                <button class="color-btn3 active"><img src="./assets/icnos/left-align.svg" alt=""></button>
+                <button class="color-btn3"><img src="./assets/icnos/centre-align.svg" alt=""></button>
+                <button class="color-btn3"><img src="./assets/icnos/right-align.svg" alt=""></button>
+                <button class="color-btn3"><img src="./assets/icnos/justify.svg" alt=""></button>
+            </div>
+            <div class="indent">
+                <button class="color-btn4 active"><img src="./assets/icnos/sumright.svg" alt=""></button>
+                <button class="color-btn4"><img src="./assets/icnos/sumleft.svg" alt=""></button>
+            </div>
+            <div class="bullet">
+                <button class="color-btn5 active"><img src="./assets/icnos/bullet.svg" alt=""></button>
+                <button class="color-btn5"><img src="./assets/icnos/nums.svg" alt=""></button>
+            </div>
+            <div class="font">
+                <select name="fonts" id="fonts"></select>
+            </div>
+            <div class="fontsize">
+                <select name="fontsize" id="size"></select>
+            </div>
+        </div>
+        
+        <section class="formatting opts">
+            <button class="Clear-button" id="clear" type="button">Clear</button>
+
+            <div>
+                <button class="color-btn6 active" id="start">Start</button>
+                <button class="color-btn6" id="stop">Stop</button>
+            </div>
+
+            <div class="ed">
+                <select id="lang">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="mr">Marathi</option>
+                    <option value="gu">Gujarati</option>
+                <select>
+                    
+                <button id="download">Download</button>
+            </div>
+            
+        </section>
+    </main>
+    
+    <div class="text-box">
+        
+        <div name="text-editor" id="speech-text" contenteditable="true"></div>
+            
+        <section class="punctuation">
+            
+            <table class="say-insert">
+                <thead class="head">
+                    <th>Say</th>
+                    <th>Insert</th>
+                </thead>
+                <tbody class="tablebody">
+                    <tr>                 
+                        <td class="punc-name" data-punc="_">Underscore</td>
+                        <td class="punc" data-punc="_">_</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc="©">Copyright</td>
+                        <td class="punc" data-punc="©">©</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc="@">At the rate</td>
+                        <td class="punc" data-punc="@">@</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc="|">Vertical bar</td>
+                        <td class="punc" data-punc="|">|</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc=":">Colon</td>
+                        <td class="punc" data-punc=":">:</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc=";">Semi Colon</td>
+                        <td class="punc" data-punc=";">;</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc="-">Dash</td>
+                        <td class="punc" data-punc="-">–</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc="'">Apostrophe</td>
+                        <td class="punc" data-punc="'">'</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc=",">Comma</td>
+                        <td class="punc" data-punc=",">,</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc="(">Open Parenthesis</td>
+                        <td class="punc" data-punc="(">(</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc=")">Close Parenthesis</td>
+                        <td class="punc" data-punc=")">)</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc=".">Full Stop</td>
+                        <td class="punc" data-punc=".">.</td>
+                    </tr>
+                    <tr class="line-insertion">
+                        <td>New Line</td>
+                        <td>↵</td>
+                    </tr>
+                    <tr class="line-insertion">
+                        <td>New Paragraph</td>
+                        <td>↵↵</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc="%">Add Percent</td>
+                        <td class="punc" data-punc="%">%</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc="!">Exclamation Mark</td>
+                        <td class="punc" data-punc="!">!</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc="?">Question Mark</td>
+                        <td class="punc" data-punc="?">?</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc="&">Ampersand</td>
+                        <td class="punc" data-punc="&">&</td>
+                    </tr>
+                    <tr>
+                        <td class="punc-name" data-punc='"'>Quotation</td>
+                        <td class="punc" data-punc='"'>“</td>
+                    </tr>
+                </tbody>
+                
+            </table>
+        </section>
+    </div>
+
+    <!-- <script type="text/javascript">
+        // Load Google Translate API
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi,mr,gu', // Include specific languages
+                multilanguagePage: true,
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+
+        // Toggle the visibility of the translate div
+        function toggleTranslationDiv() {
+            const translateDiv = document.getElementById("translate_div");
+            translateDiv.style.display = translateDiv.style.display === "none" ? "block" : "none";
+        }
+
+        // Function to perform translation when the button is clicked
+        function performTranslation() {
+            const contentDiv = document.getElementById("speech-text"); // Get the contenteditable div
+            const langSelect = document.getElementById("langSelect").value; // Get selected language
+
+            // Translate the text inside contenteditable div
+            const translateElement = document.getElementById("google_translate_element");
+            translateElement.style.display = "block"; // Show the Google Translate widget
+
+            // You would typically trigger the Google Translate API here, but since it's a widget,
+            // we just display the widget for user interaction.
+        }
+
+        // Event listener for the translate button
+        document.getElementById("translate-lang").addEventListener("click", performTranslation);
+
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+
+
+    <main class="bottomPart">
+        <section class="bottomSect">
+            <div class="select-lang">
+                <select id="langSelect">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="gu">Gujarati</option>
+                    <option value="mr">Marathi</option>
+                <select>
+            </div>
+            <div class="translate">
+                <button id="translate-lang">Translate</button>
+            </div>
+            <div class="translate-download">
+                <button id="translate-download">Download</button>    
+            </div> 
+        </section>
+    </main>
+
+    <script type="module" src="main.js"></script>
+    <!-- <script src="format.js"></script>
+    <script src="translate.js"></script>
+    <script src="recog.js"></script> -->
+       
+</body>
+</html>

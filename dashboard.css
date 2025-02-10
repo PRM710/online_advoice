@@ -1,0 +1,417 @@
+@font-face {
+    font-family: "Nohemi";
+    src: url(./assets/fonts/Nohemi-SemiBold.otf);
+    font-weight: 600;
+}
+@font-face {
+    font-family: "Nohemi-Regular";
+    src: url(./assets/fonts/Nohemi-Regular.otf);
+    font-weight: 700;
+}
+@font-face {
+    font-family: "Nohemi-Extra";
+    src: url(./assets/fonts/Nohemi-ExtraBold.otf);
+    font-weight: 800;
+}
+@font-face {
+    font-family: "Nohemi Light";
+    src: url(./assets/fonts/Nohemi-Light.otf);
+}
+
+body {
+    background-color: #e4e4e4;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-nohemi: "Nohemi";
+}
+
+.Clear-button {
+    border-radius: 10px;
+    background-color:#ffffff;
+    border-color: #ffffff;
+    border-collapse: collapse;
+    display: flexbox;
+    justify-content:center;
+    align-items: center;
+    font-family: "Nohemi";
+    /* font-size: 25pt; */
+    font-size: 17pt;
+    color:black;    
+    cursor: pointer;
+}
+
+.Clear-button:hover {
+    background-color: #07A1F5;
+    color: #ffffff;
+}
+
+.sidenav-bar {
+    height: 100%;
+    width: 5%;
+    position: fixed;
+    background-color: #ffffff;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 60px ;
+    border-top-right-radius: 2em;
+}
+
+.AV-ICON {
+   text-align: center;
+   margin-bottom: 50px;
+}
+
+.NAV-TOOLS {
+    text-align: center;
+}
+
+#prof:hover, #dash:hover, #htu:hover {
+    transform: scale(1.5);
+}
+
+.undo-redo {
+    height: 30px;
+    width: 70px;
+    color: black;
+    left: 30%;
+    align-items: center;
+}
+
+.text-box {
+    display:flex;
+    align-items:flex-start;  
+    height: 100vh;
+    padding: 100px;
+    padding-top: 30px;
+    padding-right: 2%;
+    padding-left: 20px;
+    gap: 40px;
+    justify-content: space-between;
+}
+
+#speech-text {
+    height: 671px;
+    width: 700em;
+    resize: none;
+    margin: 0%;
+    overflow: auto;
+    border: #ffffff;
+    font-size: 17px;
+    background-color: #ffffff;
+    margin-left: 5%;
+    box-sizing: border-box;
+}
+
+#speech-text::placeholder {
+    font-family: "Nohemi-Regular";
+    color: #888888;
+} 
+
+#speech-text ul, ol {
+    padding-left: 20px;
+    margin: 0;
+}
+
+#speech-text::-webkit-scrollbar {
+    width: 12px;
+}
+
+#speech-text::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb {
+    background: #07A1F5;
+    cursor: grabbing;
+}
+
+.punctuation {
+    height: 671px;
+    width: 150em;
+    background-color: #ffffff;
+    /* margin-top: 5%; */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 15px;
+    font-family: var(--font-nohemi)
+}
+
+.say-insert {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    padding-top: 0;
+    padding-bottom: 20%;
+    color: #545454;
+    font-size: 20pt;
+    text-align: center;
+}
+
+.say-insert td {
+    padding: 5px;
+    text-align: center;
+    font-family: "Nohemi-Regular";
+    font-size: 16px;
+    font-weight: normal;
+    color: #808080;
+    font-size: 12pt;
+}
+
+.say-insert tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.say-insert tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.tablebody tr {
+    cursor: pointer;
+}
+
+.UpperPart{
+    border-collapse: collapse;
+    width: 90%;
+    margin: auto;
+    padding: 20px 10px;
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* height: 300px; */
+}
+
+.formatting {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.formatting div{
+    /* border: 1px solid black; */
+    width: max-content;
+    /* padding: 5px; */
+    border-radius: 10px;
+    background-color: white;
+}
+
+.formatting button, .opts button{
+    padding: 5px 10px;  
+    background-color: white;
+    border: 10px;
+    cursor: pointer;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+}
+
+.formatting p{
+    padding: 5px;
+}
+
+.opts{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.opts .Clear-button{
+    background-color:#ffffff;
+    width: 200px;
+}
+
+.opts .Clear-button:hover {
+    background-color: #07A1F5;
+}
+
+.opts .ed{
+    display: flex;
+    gap: 10px;
+    background-color: transparent;
+}
+
+.ed select, .ed button , .ed option{
+    background-color: white;
+    font-size: 17pt;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    width: 200px;
+    justify-content: center;
+    font-family: "Nohemi";
+}
+
+.ed select {
+    border: #ffffff;
+}
+
+.ed button:hover {
+    background-color:#07A1F5;
+    color: #ffffff;
+}
+.color-btn {
+    background-color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.color-btn6 {
+    font-family: "Nohemi";
+    font-size: 17pt;
+}
+
+.color-btn.active, .color-btn2.active, .color-btn3.active, .color-btn4.active, .color-btn5.active, .color-btn6.active {
+    background-color: #07A1F5; 
+}   
+
+.color-btn.active img, .color-btn2.active img, .color-btn3.active img, .color-btn4.active img, .color-btn5.active img, .color-btn6.active img {
+    filter: invert(1);  
+     
+} 
+  
+.color-btn:not(.active) img, 
+.color-btn2:not(.active) img, 
+.color-btn3:not(.active) img, 
+.color-btn4:not(.active) img, 
+.color-btn5:not(.active) img, 
+.color-btn6:not(.active) img  {
+    filter: invert(0);  
+  }
+
+.font {
+    background-color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+#fonts {
+    font-family: "Nohemi Light" ;
+    font-size: 12pt;
+    border-collapse:collapse ;
+    border-color: #ffffff;
+    cursor: pointer;
+}
+
+.fontsize {
+    background-color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+#size {
+    font-family: "Nohemi Light" ;
+    font-size: 12pt;
+    border-collapse:collapse ;
+    border-color: #ffffff;
+    cursor: pointer;
+}
+
+.botttomPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 20% ;
+}
+.bottomSect {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}
+.select-lang {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center ;
+}
+.select-lang select {
+    background-color: white;
+    font-size: 17pt;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+    width: 200px;
+    font-family: "Nohemi";
+    border: #ffffff;
+    padding: 10px ;
+    padding-top: 5px;
+}
+.translate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center ;
+    margin-top: 0%;
+}
+#translate-lang {
+    font-size: 17pt;
+    background-color: #ffffff;
+    font-family: "Nohemi";
+    border: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+#translate-lang:hover {
+    background-color: #07A1F5;
+    color: #ffffff;
+}
+.translate-download {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+}
+#translate-download {
+    font-size: 17pt;
+    background-color: #ffffff;
+    font-family: "Nohemi";
+    border: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+#translate-download:hover {
+    color: #ffffff;
+    background-color: #07A1F5;
+}
+
+.new-textarea {
+    display: block;
+    height: 671px;
+    width: 1100px;
+    resize: none;
+    margin: 20px auto;
+    border: #ffffff;
+    font-size: 17px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+.new-textarea::-webkit-scrollbar {
+    width: 12px;
+}
+
+.new-textarea::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb {
+    background: #07A1F5;
+    cursor: grabbing;
+}
+
+
