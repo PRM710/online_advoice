@@ -95,21 +95,21 @@ $(document).ready(function() {
         Export2Word(textContent);
     });
     function Export2Word(textContent) {
-        var preHtml = '<html><head><meta charset="utf-8"></head><body>';
-        var postHtml = '</body></html>';
-        var fullHtml = preHtml + textContent + postHtml;
-    
-        var convt = htmlDocx.asBlob(fullHtml);
-        
-        // Check if PyWebview is running
-        if (window.pywebview) {
-            // Send the file to Python backend for downloading
-            window.pywebview.api.save_file(fullHtml);
-        } else {
-            // Normal browser behavior
-            saveAs(convt, "draft.docx");
-        }
+    var preHtml = '<html xmlns:o="urn:schemas-microsoft-com:office:office" ' +
+                  'xmlns:w="urn:schemas-microsoft-com:office:word" ' +
+                  'xmlns="http://www.w3.org/TR/REC-html40">' +
+                  '<head><meta charset="utf-8"></head><body>';
+    var postHtml = '</body></html>';
+    var fullHtml = preHtml + textContent + postHtml;
+
+    var convt = htmlDocx.asBlob(fullHtml);
+
+    if (window.pywebview) {
+        window.pywebview.api.save_file(fullHtml);
+    } else {
+        saveAs(convt, "draft.docx");
     }
+}
 });
 
 
