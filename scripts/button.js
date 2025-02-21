@@ -107,7 +107,7 @@ $(document).ready(function() {
     if (window.pywebview) {
         window.pywebview.api.save_file(fullHtml);
     } else {
-        saveAs(convt, "draft.docx");
+        saveAs(convt, "adv_online.docx");
     }
 }
 });
