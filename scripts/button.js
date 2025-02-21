@@ -98,10 +98,17 @@ $(document).ready(function() {
         var preHtml = '<html><head><meta charset="utf-8"></head><body>';
         var postHtml = '</body></html>';
         var fullHtml = preHtml + textContent + postHtml;
-
+    
         var convt = htmlDocx.asBlob(fullHtml);
-        // var blob = new Blob([textContent], {type: "text/plain;charset=utf-8"});
-        saveAs(convt, "draft.docx");
+        
+        // Check if PyWebview is running
+        if (window.pywebview) {
+            // Send the file to Python backend for downloading
+            window.pywebview.api.save_file(fullHtml);
+        } else {
+            // Normal browser behavior
+            saveAs(convt, "draft.docx");
+        }
     }
 });
 
