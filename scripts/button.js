@@ -87,29 +87,29 @@ cleartext.addEventListener('click', function() {
 
 //Download
 $(document).ready(function() {
-    
     $('#download').on('click', function() {
         // Get the content from the contenteditable div
         var content = $('#speech-text').html();
-        var textContent = $('<div>').html(content).text();
-        Export2Word(textContent);
+        var textContent = $('<div>').html(content).text();  // Remove HTML tags
+
+        if (window.pywebview) {
+            // Call Python's save_file API from PyWebview
+            window.pywebview.api.save_file(textContent)
+                .then(response => alert(response))
+                .catch(error => alert("Error: " + error));
+        } else {
+            Export2Word(textContent);  // Fallback for browser usage
+        }
     });
+
     function Export2Word(textContent) {
-    var preHtml = '<html xmlns:o="urn:schemas-microsoft-com:office:office" ' +
-                  'xmlns:w="urn:schemas-microsoft-com:office:word" ' +
-                  'xmlns="http://www.w3.org/TR/REC-html40">' +
-                  '<head><meta charset="utf-8"></head><body>';
-    var postHtml = '</body></html>';
-    var fullHtml = preHtml + textContent + postHtml;
+        var preHtml = '<html><head><meta charset="utf-8"></head><body>';
+        var postHtml = '</body></html>';
+        var fullHtml = preHtml + textContent + postHtml;
 
-    var convt = htmlDocx.asBlob(fullHtml);
-
-    if (window.pywebview) {
-        window.pywebview.api.save_file(fullHtml);
-    } else {
-        saveAs(convt, "adv_online.docx");
+        var convt = htmlDocx.asBlob(fullHtml);
+        saveAs(convt, "ad_online.docx");
     }
-}
 });
 
 
