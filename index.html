@@ -15,6 +15,74 @@
     <script src="https://www.google.com/jsapi" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html-docx-js/0.3.1/html-docx.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+
+    <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+        async function authenticateUser() {
+            let assignedTo = prompt("Enter your username (assignedTo):").trim();
+            let licenseKey = prompt("Enter your license key:").trim();
+
+            if (!assignedTo || !licenseKey) {
+                alert("Username and License Key are required!");
+                location.reload();
+                return;
+            }
+
+            try {
+                console.log("📡 Fetching user data from the database...");
+
+                let response = await fetch("http://localhost:5000/get-keys", {
+                    method: "GET",
+                    headers: { "Content-Type": "application/json" },
+                    mode: "cors"
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                let data = await response.json();
+                console.log("✅ Fetched database data:", data);
+
+                if (!Array.isArray(data)) {
+                    console.error("🚨 Unexpected API response:", data);
+                    alert("Invalid server response. Try again later.");
+                    location.reload();
+                    return;
+                }
+
+                // Find user by assignedTo
+                let userRecord = data.find(user => user.assignedTo?.trim() === assignedTo);
+                if (!userRecord) {
+                    console.warn(`⚠️ No match found for assignedTo: ${assignedTo}`);
+                    alert("Invalid username. Reloading page.");
+                    location.reload();
+                    return;
+                }
+
+                // Check if licenseKey matches
+                if (userRecord.licenseKey?.trim() !== licenseKey) {
+                    console.warn(`🔑 License key mismatch for assignedTo: ${assignedTo}`);
+                    alert("Invalid license key. Reloading page.");
+                    location.reload();
+                    return;
+                }
+
+                console.log(`✅ Authentication successful for assignedTo: ${assignedTo}`);
+                alert("Login successful! Welcome to AdvocateVoice.");
+            } catch (error) {
+                console.error("❌ Error authenticating user:", error);
+                alert("Authentication service unavailable. Try again later.");
+                location.reload();
+            }
+        }
+
+        authenticateUser();
+    });
+</script>
+
+    
 </head>
 
 <body>
