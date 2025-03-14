@@ -17,55 +17,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
 
-    <script>
-document.addEventListener("DOMContentLoaded", async function () {
-    async function authenticateUser() {
-        let assignedTo = prompt("Enter your username (assignedTo):");
-        let licenseKey = prompt("Enter your license key:");
-
-        if (!assignedTo || !licenseKey) {
-            alert("Username and License Key are required!");
-            location.reload();
-            return;
-        }
-
-        try {
-            console.log("Fetching user data from the database...");
-
-            let response = await fetch(`https://server-js-qd87.onrender.com/get-keys?assignedTo=${encodeURIComponent(assignedTo)}&licenseKey=${encodeURIComponent(licenseKey)}`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                mode: "cors"
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
-            let data = await response.json();
-            console.log("Fetched database data:", data);
-
-            if (data.error) {
-                console.log("Invalid credentials entered:", { assignedTo, licenseKey });
-                alert("Invalid credentials. Reloading page.");
-                location.reload();
-            } else {
-                console.log("Authentication successful for:", data.assignedTo);
-                alert(`Welcome, ${data.assignedTo}!`);
-            }
-        } catch (error) {
-            console.error("Error authenticating user:", error);
-            alert("Authentication service unavailable. Try again later.");
-            location.reload();
-        }
-    }
-
-    authenticateUser();
-});
-
-</script>
 
     
 </head>
