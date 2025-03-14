@@ -1,4 +1,5 @@
 export function handleRecognition() {
+  let isStoppedByUser = false; // Add this line
   const resultText = document.getElementById('speech-text');
   const start = document.getElementById('start');
   const stop = document.getElementById('stop');
@@ -295,6 +296,13 @@ export function handleRecognition() {
     recognition.lang = languageSelect.value;
     recognition.interimResults = true;
     recognition.continuous = true;
+
+    recognition.onend = () => {
+      if (!isStoppedByUser) {
+        recognition.start(); // Restart if not stopped by user
+      }
+    };
+
     
     p = document.createElement("span");
     resultText.appendChild(p);
@@ -321,14 +329,18 @@ export function handleRecognition() {
     };
   }
 
-  start.addEventListener('click', function () {
-    speechtoText();
-    recognition.start();
-  });
-
+  // Update the stop button event listener
   stop.addEventListener('click', function(){
     if(recognition) {
+      isStoppedByUser = true; // Set flag to true
       recognition.stop();
     }
+  });
+
+  // Reset the flag when starting again
+  start.addEventListener('click', function () {
+    isStoppedByUser = false; // Reset flag
+    speechtoText();
+    recognition.start();
   });
 }
